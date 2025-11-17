@@ -1,0 +1,144 @@
+<html dir="rtl" lang="fa"><head><script src="//www.google.com/jsapi"></script><script>window.parent.maeExportApis_();</script>
+  
+  <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body{font-family:'Vazirmatn','IranSans','Yekan',sans-serif;background:#f8fafc;color:#0f172a;text-align:center;padding:40px;}
+    h1{color:#0369a1;margin-bottom:10px;}
+    .range{color:#475569;background:#e0f2fe;display:inline-block;padding:8px 16px;border-radius:10px;margin-bottom:20px;}
+    .summary{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:30px;}
+    .card{background:#fff;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,0.1);padding:16px 24px;min-width:160px;}
+    .card span{display:block;font-size:13px;color:#64748b;margin-bottom:6px;}
+    .card strong{font-size:20px;color:#0f172a;}
+    .person-list{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:30px 0;}
+    .person-card{background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:.3s;}
+    .person-card:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    .person-card .name{color:#0284c7;font-weight:600;}
+    .person-card .avg{color:#64748b;font-size:13px;}
+    table{margin:auto;border-collapse:collapse;min-width:760px;border-radius:14px;overflow:hidden;}
+    th,td{padding:10px 16px;border-bottom:1px solid #e2e8f0;}
+    th{background:#0284c7;color:#fff;}
+    tr:hover td{background:#f0faff;}
+    .charts{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:30px;}
+    canvas{max-width:300px;height:280px;background:#fff;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,0.05);padding:10px;}
+    .month-cards{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:20px 0;}
+    .month-card{background:#fff;padding:14px 20px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+    .month-card span{display:block;font-size:13px;color:#475569;margin-bottom:6px;}
+    .month-card strong{color:#0369a1;font-size:18px;}
+    .download{background:#0284c7;color:#fff;border:none;padding:10px 24px;border-radius:10px;cursor:pointer;margin-top:30px;transition:.3s;}
+    .download:hover{background:#0369a1;transform:translateY(-2px);}
+    footer{margin-top:40px;color:#94a3b8;font-size:13px;}
+  </style></head>
+  <body>
+    <h1>📞 گزارش میانگین تماس‌ها</h1>
+    <div class="range">بازه: 1404/07/01 تا 1404/08/20</div>
+
+    <div class="summary">
+      <div class="card"><span>میانگین کل</span><strong>7.8 دقیقه</strong></div>
+      <div class="card"><span>بیشترین میانگین</span><strong>مبینا</strong></div>
+      <div class="card"><span>کمترین میانگین</span><strong>فرزاد</strong></div>
+    </div>
+
+    <h3>📅 میانگین ماهانه تماس‌ها</h3>
+    <div class="month-cards"><div class="month-card"><span>1404/06</span><strong>0.0 دقیقه</strong></div><div class="month-card"><span>1404/07</span><strong>9.1 دقیقه</strong></div><div class="month-card"><span>1404/08</span><strong>8.2 دقیقه</strong></div></div>
+
+    <div class="person-list">
+    <div class="person-card">
+      <div class="name">مبینا</div>
+      <div class="avg">9.6 دقیقه</div>
+    </div>
+    <div class="person-card">
+      <div class="name">زهرا</div>
+      <div class="avg">8.6 دقیقه</div>
+    </div>
+    <div class="person-card">
+      <div class="name">ساجده</div>
+      <div class="avg">7.8 دقیقه</div>
+    </div>
+    <div class="person-card">
+      <div class="name">معراج</div>
+      <div class="avg">7.2 دقیقه</div>
+    </div>
+    <div class="person-card">
+      <div class="name">فرزاد</div>
+      <div class="avg">5.8 دقیقه</div>
+    </div></div>
+
+    <h2>📊 جدول عملکرد کارشناسان</h2>
+    <table>
+      <tbody><tr><th>رتبه</th><th>نام کارشناس</th><th>تعداد تماس</th><th>مجموع زمان (دقیقه)</th><th>میانگین هر تماس (دقیقه)</th></tr>
+      
+    <tr>
+      <td>1</td>
+      <td>مبینا</td>
+      <td>195</td>
+      <td>1868.0</td>
+      <td>9.6</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>زهرا</td>
+      <td>110</td>
+      <td>947.0</td>
+      <td>8.6</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>ساجده</td>
+      <td>86</td>
+      <td>666.5</td>
+      <td>7.8</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>معراج</td>
+      <td>60</td>
+      <td>430.0</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>فرزاد</td>
+      <td>6</td>
+      <td>35.0</td>
+      <td>5.8</td>
+    </tr>
+    </tbody></table>
+
+    <div class="charts">
+      <canvas id="chartAvg" width="1034" height="517" style="display: block; box-sizing: border-box; height: 470.2px; width: 940px;"></canvas>
+      <canvas id="chartCount" width="1034" height="517" style="display: block; box-sizing: border-box; height: 470.2px; width: 940px;"></canvas>
+      <canvas id="chartTotal" width="1034" height="517" style="display: block; box-sizing: border-box; height: 470.2px; width: 940px;"></canvas>
+    </div>
+
+    <button class="download" onclick="downloadHTML()">⬇️ دانلود گزارش HTML</button>
+
+    <footer>تهیه و طراحی شده توسط فرزاد مالکی</footer>
+
+    <script>
+      const labels=["مبینا","زهرا","ساجده","معراج","فرزاد"],
+            avgData=[9.6,8.6,7.8,7.2,5.8],
+            countData=[195,110,86,60,6],
+            totalData=[1868,947,666.5,430,35];
+
+      function makeChart(id,label,data,color){
+        new Chart(document.getElementById(id),{
+          type:'bar',
+          data:{labels,datasets:[{label,data,backgroundColor:color,borderColor:color,borderWidth:2,borderRadius:10}]},
+          options:{animation:{duration:1200,easing:'easeOutQuart'},plugins:{legend:{display:false}},scales:{y:{beginAtZero:true},x:{grid:{display:false}}}}
+        });
+      }
+
+      makeChart('chartAvg','میانگین هر تماس (دقیقه)',avgData,'#0284c7');
+      makeChart('chartCount','تعداد تماس‌ها',countData,'#10b981');
+      makeChart('chartTotal','مجموع زمان (دقیقه)',totalData,'#f59e0b');
+
+      function downloadHTML(){
+        const blob=new Blob([document.documentElement.outerHTML],{type:'text/html'});
+        const a=document.createElement('a');
+        a.href=URL.createObjectURL(blob);
+        a.download='گزارش_میانگین_تماس‌ها.html';
+        a.click();
+      }
+    </script>
+  </body></html>

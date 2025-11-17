@@ -1,0 +1,113 @@
+<html lang="fa" dir="rtl"><head><script src="//www.google.com/jsapi"></script><script>window.parent.maeExportApis_();</script>
+  
+  
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body{
+        font-family:'Vazirmatn','IranSans','Yekan',sans-serif;
+        background:#f9fbfd;padding:40px;text-align:center;color:#0f172a;
+      }
+      section{
+        background:#fff;border-radius:16px;padding:24px;margin-bottom:28px;
+        box-shadow:0 6px 24px rgba(0,0,0,.05);
+      }
+      table{margin:auto;border-collapse:collapse;min-width:680px;border-radius:12px;overflow:hidden;}
+      th,td{padding:12px 16px;border-bottom:1px solid #e2e8f0;}
+      th{background:#0ea5e9;color:white;}
+      tr:hover td{background:#f0faff;}
+      .download{background:#0284c7;color:#fff;border:none;padding:12px 28px;border-radius:10px;margin-top:20px;cursor:pointer;}
+    </style>
+  </head>
+
+  <body>
+
+    <h1>📮 گزارش میانگین تیکت‌ها</h1>
+    <section><strong>بازه انتخابی:</strong> 1404/07/01 تا 1404/09/01</section>
+
+    <section>
+      <div><strong>بیشترین میانگین:</strong> مبینا</div>
+      <div><strong>کمترین میانگین:</strong> فرزاد</div>
+      <div><strong>میانگین کل:</strong> 2.5 دقیقه</div>
+    </section>
+
+    <section>
+      <h2>📋 جدول تیکت‌ها</h2>
+      <table>
+        <tbody><tr><th>رتبه</th><th>نام</th><th>تعداد</th><th>مجموع</th><th>میانگین</th></tr>
+        
+    <tr>
+      <td>1</td>
+      <td>مبینا</td>
+      <td>941</td>
+      <td>3514.0</td>
+      <td>3.7</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ساجده</td>
+      <td>587</td>
+      <td>1928.0</td>
+      <td>3.3</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>زهرا</td>
+      <td>2588</td>
+      <td>5116.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>معراج</td>
+      <td>6090</td>
+      <td>10498.0</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>فرزاد</td>
+      <td>254</td>
+      <td>403.0</td>
+      <td>1.6</td>
+    </tr>
+      </tbody></table>
+    </section>
+
+    <section>
+      <h2>📊 نمودار میانگین</h2>
+      <canvas id="chartAvg" width="741" height="370" style="display: block; box-sizing: border-box; height: 370.5px; width: 741px;"></canvas>
+    </section>
+
+    <section>
+      <h2>📊 نمودار تعداد</h2>
+      <canvas id="chartCount" width="741" height="370" style="display: block; box-sizing: border-box; height: 370.5px; width: 741px;"></canvas>
+    </section>
+
+    <button class="download" onclick="downloadHTML()">⬇️ دانلود گزارش HTML</button>
+
+    <script>
+      const labels=["مبینا","ساجده","زهرا","معراج","فرزاد"];
+      const avgData=[3.7,3.3,2,1.7,1.6];
+      const countData=[941,587,2588,6090,254];
+
+      new Chart(document.getElementById('chartAvg'),{
+        type:'bar',
+        data:{labels,datasets:[{label:'میانگین',data:avgData,backgroundColor:'#38bdf888',borderColor:'#0284c7'}]}
+      });
+      new Chart(document.getElementById('chartCount'),{
+        type:'bar',
+        data:{labels,datasets:[{label:'تعداد',data:countData,backgroundColor:'#34d39988',borderColor:'#059669'}]}
+      });
+
+      function downloadHTML(){
+        const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'گزارش_تیکت‌ها.html';
+        a.click();
+      }
+    </script>
+
+  
+  </body></html>

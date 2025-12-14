@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>سند استاندارد ارجاع گزارش‌های صدای کاربر</title>
+  <style>
+    :root{
+      --primary:#2563eb;
+      --secondary:#f59e0b;
+      --success:#16a34a;
+      --info:#0ea5e9;
+      --warning:#f59e0b;
+      --danger:#dc2626;
+
+      --bg:#f7f9fc;
+      --bg2:#eef2ff;
+      --surface:#ffffff;
+
+      --text:#0f172a;
+      --muted:#475569;
+
+      --border:#e5e7eb;
+      --border2:#dbe3f2;
+
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      --shadow2: 0 14px 34px rgba(15, 23, 42, 0.10);
+
+      --radius:14px;
+      --radius2:18px;
+
+      --font: "IRANSans", "IranSans", "Tahoma", "Vazirmatn", sans-serif;
+
+      --base:14px;
+      --h:16px;
+
+      --max:1120px;
+    }
+
+    @font-face{
+      font-family: IRANSans;
+      src: local("IRANSans"), local("IranSans"), local("IRANSansWeb");
+      font-display: swap;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 500px at 80% -5%, var(--bg2) 0%, rgba(238,242,255,0) 60%),
+        radial-gradient(900px 420px at 10% 0%, rgba(14,165,233,0.12) 0%, rgba(14,165,233,0) 55%),
+        var(--bg);
+      color:var(--text);
+      font-family:var(--font);
+      font-size:var(--base);
+      line-height:2.05;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{color:inherit}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:5;
+      background:rgba(247, 249, 252, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+
+    .wrap{max-width:var(--max);margin:0 auto;padding:18px 18px}
+
+    .title{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(37, 99, 235, 0.10);
+      color:var(--primary);
+      border:1px solid rgba(37, 99, 235, 0.18);
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:-0.2px;
+      line-height:1.6;
+    }
+
+    .subtitle{
+      margin-top:6px;
+      color:var(--muted);
+      max-width:860px;
+    }
+
+    main{padding:18px 0 48px}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    @media (min-width: 980px){
+      .grid{grid-template-columns: 350px 1fr;}
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border2);
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow2);
+      padding:18px;
+    }
+
+    .card h2{
+      margin:0 0 10px 0;
+      font-size:var(--h);
+      line-height:1.8;
+    }
+
+    .toc{
+      position:relative;
+    }
+
+    @media (min-width: 980px){
+      .toc{
+        position:sticky;
+        top:92px;
+        max-height: calc(100vh - 120px);
+        overflow:auto;
+        padding-right:14px;
+      }
+      .toc::-webkit-scrollbar{width:10px}
+      .toc::-webkit-scrollbar-thumb{background:rgba(15,23,42,0.12);border-radius:999px}
+      .toc::-webkit-scrollbar-track{background:rgba(15,23,42,0.04);border-radius:999px}
+    }
+
+    .toc h2{margin:0 0 12px 0}
+
+    .toc a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      color:var(--text);
+      text-decoration:none;
+      border:1px solid transparent;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+    }
+
+    .toc a:hover{
+      border-color:var(--border);
+      background:rgba(2, 6, 23, 0.02);
+      transform: translateY(-1px);
+    }
+
+    .toc a:focus{outline:2px solid rgba(37,99,235,0.35);outline-offset:2px}
+
+    .pill{
+      display:inline-flex;
+      padding:5px 10px;
+      border-radius:999px;
+      font-weight:800;
+      border:1px solid var(--border);
+      background:rgba(2, 6, 23, 0.02);
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .section{scroll-margin-top:110px}
+
+    .callout{
+      border-radius:var(--radius2);
+      padding:14px 14px;
+      border:1px solid rgba(14,165,233,0.25);
+      background:linear-gradient(180deg, rgba(14, 165, 233, 0.10) 0%, rgba(14, 165, 233, 0.05) 100%);
+    }
+
+    .callout strong{color:var(--text);font-weight:900}
+
+    .hr{
+      height:1px;
+      background:linear-gradient(90deg, rgba(229,231,235,0), var(--border), rgba(229,231,235,0));
+      margin:16px 0;
+    }
+
+    .kpi{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+
+    @media (min-width: 720px){
+      .kpi{grid-template-columns: 1fr 1fr;}
+    }
+
+    .kpi .box{
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      padding:12px 12px;
+      background:rgba(2, 6, 23, 0.02);
+    }
+
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      margin-bottom:6px;
+    }
+
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background:var(--primary);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+    }
+
+    .dot.success{background:var(--success);box-shadow:0 0 0 4px rgba(22,163,74,0.12)}
+    .dot.warning{background:var(--warning);box-shadow:0 0 0 4px rgba(245,158,11,0.14)}
+    .dot.danger{background:var(--danger);box-shadow:0 0 0 4px rgba(220,38,38,0.12)}
+    .dot.info{background:var(--info);box-shadow:0 0 0 4px rgba(14,165,233,0.14)}
+
+    ul{margin:0;padding:0 18px 0 0}
+    li{margin:8px 0}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      background:var(--surface);
+    }
+
+    .table th,.table td{
+      padding:10px 12px;
+      border-bottom:1px solid var(--border);
+      vertical-align:top;
+      text-align:right;
+    }
+
+    .table th{
+      background:rgba(2, 6, 23, 0.03);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .table tbody tr:nth-child(even) td{
+      background:rgba(2,6,23,0.015);
+    }
+
+    .table tr:last-child td{border-bottom:none}
+
+    .tag{
+      display:inline-flex;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .tag.primary{border-color:rgba(37,99,235,0.25);background:rgba(37,99,235,0.08);color:var(--primary)}
+    .tag.success{border-color:rgba(22,163,74,0.25);background:rgba(22,163,74,0.08);color:var(--success)}
+    .tag.warning{border-color:rgba(245,158,11,0.25);background:rgba(245,158,11,0.08);color:#92400e}
+    .tag.danger{border-color:rgba(220,38,38,0.25);background:rgba(220,38,38,0.08);color:var(--danger)}
+    .tag.info{border-color:rgba(14,165,233,0.25);background:rgba(14,165,233,0.08);color:var(--info)}
+
+    .btnrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(37,99,235,0.22);
+      background:var(--primary);
+      color:#fff;
+      font-weight:900;
+      text-decoration:none;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+      box-shadow: 0 10px 18px rgba(37,99,235,0.18);
+    }
+
+    .btn:hover{transform: translateY(-1px);box-shadow: 0 14px 24px rgba(37,99,235,0.22)}
+
+    .btn.secondary{
+      background:#fff;
+      color:var(--primary);
+      box-shadow:none;
+    }
+
+    .btn.secondary:hover{
+      background:rgba(37,99,235,0.06);
+      box-shadow:none;
+    }
+
+    .note{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .footer{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    @media print{
+      header{position:static;backdrop-filter:none}
+      body{background:#fff}
+      .wrap{max-width:none}
+      .card{box-shadow:none;border-color:#d1d5db}
+      .toc{display:none}
+      .btnrow{display:none}
+      .section{page-break-inside:avoid}
+      .table{page-break-inside:avoid}
+    }
+  
+    /* تک ستونه سازی قطعی */
+    .grid{display:block !important}
+    aside.card.toc{position:static !important; max-height:none !important; overflow:visible !important; padding-right:18px !important; margin-bottom:14px}
+    main .wrap{max-width: 920px}
+    @media (min-width: 980px){
+      main .wrap{max-width: 920px}
+    }
+    
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <div>
+          <div class="badge">سند استاندارد ارجاع گزارش‌های صدای کاربر</div>
+          <h1>چارچوب رسمی برای تبدیل گزارش‌های صدای کاربر به تصمیم و اقدام</h1>
+          <div class="subtitle">
+            این سند برای جلوگیری از گردش بی پایان نامه‌ها، ایجاد مالکیت روشن، کاهش بازگشت‌های زیگزاگی، و تضمین اینکه گزارش‌های صدای کاربر به خروجی عملیاتی قابل سنجش تبدیل شوند تدوین شده است.
+          </div>
+        </div>
+        <div class="pill">نسخه ۱</div>
+      </div>
+      <div class="btnrow">
+        <a class="btn secondary" href="#summary">شروع سریع</a>
+        <a class="btn" href="#process">فرآیند استاندارد</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="grid">
+        <aside class="card toc">
+          <h2>فهرست</h2>
+          <a href="#intro">مقدمه و دامنه کاربرد</a>
+          <a href="#necessity">شرح ضرورت و مسئله</a>
+          <a href="#audience">تعریف مخاطبان و نقش‌ها</a>
+          <a href="#principles">اصول راهنما و قواعد حاکم</a>
+          <a href="#inputs">تعریف ورودی‌ها و استاندارد گزارش</a>
+          <a href="#triage">طبقه بندی و اولویت بندی</a>
+          <a href="#process">فرآیند استاندارد ارجاع و تصمیم</a>
+          <a href="#sla">زمانبندی و تعهدات زمانی</a>
+          <a href="#ownership">مالکیت، مسئولیت و سازوکار پیگیری</a>
+          <a href="#communication">الگوی مکاتبه و نحوه رونوشت</a>
+          <a href="#kpis">شاخص‌ها و نتایج مورد انتظار</a>
+          <a href="#artifacts">پیوست‌ها و خروجی‌های لازم</a>
+          <a href="#risks">ریسک‌ها و کنترل‌ها</a>
+          <a href="#examples">نمونه سناریو و مسیر درست</a>
+          <a href="#governance">حاکمیت و بازنگری سند</a>
+        </aside>
+
+        <section class="card section" id="summary">
+          <h2>شروع سریع</h2>
+          <div class="callout">
+            <strong>قاعده طلایی</strong>
+            گزارش صدای کاربر باید قبل از رسیدن به مدیریت عامل، به زبان تصمیم ترجمه شود.
+            یعنی هر ارجاع به سطح تصمیم، باید همراه با گزینه‌های پیشنهادی، هزینه و زمان، و اثر مورد انتظار باشد.
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="kpi">
+            <div class="box">
+              <div class="label"><span class="dot success"></span>خروجی مطلوب</div>
+              گزارش در قالب تصمیم روشن، مالک مشخص، زمانبندی مشخص، و معیار سنجش قابل اندازه گیری به اقدام تبدیل می‌شود.
+            </div>
+            <div class="box">
+              <div class="label"><span class="dot danger"></span>خروجی نامطلوب</div>
+              گزارش بین افراد گردش می‌کند، رونوشت‌ها زیاد می‌شود، مالک اقدام مشخص نیست، و نتیجه به سطح درخواست کننده باز نمی‌گردد.
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <p class="note">
+            در این سند، واژه‌های بیگانه و حروف اختصاری استفاده نشده است. هر جا نیاز به مفهوم فنی بوده است، معادل فارسی و توضیح کامل ارائه شده است.
+          </p>
+        </section>
+
+        <section class="card section" id="intro">
+          <h2>مقدمه و دامنه کاربرد</h2>
+          <p>
+            گزارش‌های صدای کاربر معمولاً شامل خطاهای مشاهده شده، نقاط ابهام در تجربه کاربری، پیشنهادهای بهبود، و درخواست‌های پرتکرار کاربران هستند.
+            این گزارش‌ها اگر درست ارجاع و مدیریت شوند، می‌توانند به بهبود تجربه کاربر، کاهش هزینه پشتیبانی، افزایش اعتماد، و افزایش فروش کمک کنند.
+            اگر این گزارش‌ها بدون چارچوب ارجاع شوند، احتمال بروز گردش بی پایان، انباشت رونوشت‌ها، دوباره کاری، و عدم تصمیم گیری بالا می‌رود.
+          </p>
+          <p>
+            دامنه این سند شامل همه گزارش‌هایی است که از سوی واحد صدای کاربر تولید می‌شود و برای تیم محصول، تیم فنی، تیم طراحی، تیم داده، تیم رشد کاربران، و مدیریت ارشد ارسال می‌گردد.
+            این سند هم برای گزارش‌های دوره‌ای و هم برای گزارش‌های اضطراری قابل استفاده است.
+          </p>
+        </section>
+
+        <section class="card section" id="necessity">
+          <h2>شرح ضرورت و مسئله</h2>
+          <p>
+            تجربه سازمان نشان می‌دهد که وقتی گزارش صدای کاربر به صورت خام به سطوح بالای تصمیم ارسال می‌شود، دو اتفاق محتمل رخ می‌دهد.
+            نخست اینکه مدیریت ارشد مجبور می‌شود وارد جزئیات خرد شود و بار تصمیم گیری افزایش می‌یابد.
+            دوم اینکه برای جلوگیری از تصمیم گیری فوری، گزارش دوباره به مسیرهای مختلف بازگردانده می‌شود و به جای حرکت خطی به سمت نتیجه، حرکت زیگزاگی شکل می‌گیرد.
+          </p>
+          <p>
+            این سند برای حل همین مسئله طراحی شده است.
+            هدف این است که ارجاع‌ها به جای پراکنده سازی، منجر به تصمیم شوند و هر گزارش در یک مسیر استاندارد، از تولید تا اقدام و سپس تا بازگشت نتیجه به واحد صدای کاربر، کامل شود.
+          </p>
+        </section>
+
+        <section class="card section" id="audience">
+          <h2>تعریف مخاطبان و نقش‌ها</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>نقش</th>
+                <th>تعریف مسئولیت</th>
+                <th>محدوده تصمیم</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag info">کارشناس صدای کاربر</span></td>
+                <td>گردآوری شواهد، دسته بندی بازخوردها، مستندسازی خطاها، ارائه داده و نمونه‌های واقعی</td>
+                <td>پیشنهاد اولیه و مستندسازی</td>
+              </tr>
+              <tr>
+                <td><span class="tag info">سرپرست صدای کاربر</span></td>
+                <td>کنترل کیفیت گزارش، تأیید کفایت شواهد، تعیین درجه فوریت، ارجاع به مالک تحلیل محصول</td>
+                <td>تعیین اولویت اولیه و مسیر ارجاع</td>
+              </tr>
+              <tr>
+                <td><span class="tag primary">مالک تحلیل محصول</span></td>
+                <td>ترجمه گزارش به زبان تصمیم، استخراج گزینه‌ها، تعیین اثر بر محصول و نیازمندی‌ها، هماهنگی با فنی و طراحی</td>
+                <td>پیشنهاد تصمیم و نقشه اقدام</td>
+              </tr>
+              <tr>
+                <td><span class="tag primary">مسئول فنی</span></td>
+                <td>برآورد زمان، تعیین وابستگی‌ها، ارزیابی ریسک فنی، ارائه راهکار اجرایی و ترتیب انجام</td>
+                <td>تأیید امکان پذیری و زمانبندی</td>
+              </tr>
+              <tr>
+                <td><span class="tag primary">مسئول طراحی تجربه کاربر</span></td>
+                <td>تحلیل مسیر کاربر، طراحی اصلاحات، سنجش اثر بر فهم و اعتماد کاربر، ارائه نمونه پیشنهادی</td>
+                <td>تصمیم در محدوده طراحی و تجربه کاربر</td>
+              </tr>
+              <tr>
+                <td><span class="tag warning">مسئول رشد کاربران</span></td>
+                <td>ارزیابی اثر بر تبدیل، نگهداشت، و مسیر خرید، پیشنهاد آزمون‌های رفتاری و پیام رسانی</td>
+                <td>پیشنهاد آزمون و پیام و قیف</td>
+              </tr>
+              <tr>
+                <td><span class="tag success">مدیریت عامل</span></td>
+                <td>تصمیم در موارد دارای اثر راهبردی، تعارض بین واحدی، یا نیاز به تخصیص منابع و اولویت سازمانی</td>
+                <td>تعیین سیاست و اولویت سازمانی</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="principles">
+          <h2>اصول راهنما و قواعد حاکم</h2>
+          <ul>
+            <li>هر گزارش باید یک مالک مشخص برای تبدیل به تصمیم داشته باشد و آن مالک باید از ابتدا تعیین شود.</li>
+            <li>هر ارجاع به سطح تصمیم باید همراه با گزینه‌های پیشنهادی، زمان و هزینه، و اثر مورد انتظار باشد.</li>
+            <li>رونوشت فقط زمانی مجاز است که نقش دریافت کننده در مسیر تصمیم یا اجرا تعریف شده باشد.</li>
+            <li>هر گزارش باید در نهایت به واحد صدای کاربر بازگردد و نتیجه اقدام یا تصمیم ثبت شود.</li>
+            <li>اگر گزارش شامل خطای بحرانی یا ریسک فروش باشد، مسیر اضطراری فعال می‌شود و زمانبندی کوتاه تر اعمال می‌گردد.</li>
+            <li>در هر مرحله، معیار پذیرش و معیار پایان باید مشخص باشد تا کار نیمه تمام تلقی نشود.</li>
+          </ul>
+        </section>
+
+        <section class="card section" id="inputs">
+          <h2>تعریف ورودی‌ها و استاندارد گزارش</h2>
+          <p>
+            گزارش صدای کاربر زمانی قابل ارجاع استاندارد است که حداقل اجزای زیر را داشته باشد.
+            اگر هر جزء موجود نباشد، گزارش پیش از ورود به فرآیند تصمیم، برای تکمیل به واحد تولید کننده بازگردانده می‌شود.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>جزء لازم</th>
+                <th>شرح</th>
+                <th>نمونه شواهد قابل قبول</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>تعریف مسئله</td>
+                <td>بیان روشن اینکه مشکل چیست و کاربر چه چیزی را تجربه می‌کند</td>
+                <td>شرح تماس، متن پیام، تصویر یا ویدئو</td>
+              </tr>
+              <tr>
+                <td>دامنه اثر</td>
+                <td>تعداد گزارش یا تخمین سطح اثر و گروه کاربری</td>
+                <td>تعداد درخواست‌ها، تعداد کامنت‌ها، تحلیل خوشه بندی</td>
+              </tr>
+              <tr>
+                <td>قابلیت بازتولید</td>
+                <td>شرح اینکه چگونه می‌توان مشکل را تکرار کرد</td>
+                <td>مراحل گام به گام، نوع دستگاه، نسخه برنامه</td>
+              </tr>
+              <tr>
+                <td>اثر بر تجربه و اعتماد</td>
+                <td>شرح پیامد روانی و ادراکی برای کاربر</td>
+                <td>جملات کاربران درباره بی اعتمادی، سردرگمی، یا تصور خرابی اشتراک</td>
+              </tr>
+              <tr>
+                <td>پیشنهاد اولیه</td>
+                <td>حداقل یک راه حل پیشنهادی یا مسیر بررسی</td>
+                <td>پیشنهاد جابه جایی، شفاف سازی متن، اصلاح منطق ثبت</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="triage">
+          <h2>طبقه بندی و اولویت بندی</h2>
+          <p>
+            برای جلوگیری از تصمیم گیری سلیقه‌ای، همه موارد گزارش صدای کاربر باید بر اساس دو محور طبقه بندی شوند.
+            محور نخست اثر بر کاربر و کسب وکار است و محور دوم فوریت و ریسک است.
+            نتیجه این طبقه بندی تعیین می‌کند که گزارش وارد مسیر عادی شود یا مسیر اضطراری.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>سطح</th>
+                <th>تعریف</th>
+                <th>نمونه اثر</th>
+                <th>مسیر</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag danger">بحرانی</span></td>
+                <td>مسئله‌ای که باعث توقف استفاده، خرابی خرید، یا کاهش اعتماد گسترده می‌شود</td>
+                <td>خطای ورود، خطای پرداخت، خرابی فعال سازی اشتراک، خطای فراگیر در ختم و تاریخ</td>
+                <td>اضطراری</td>
+              </tr>
+              <tr>
+                <td><span class="tag warning">مهم</span></td>
+                <td>مسئله‌ای که تجربه را مختل می‌کند اما توقف کامل ایجاد نمی‌کند</td>
+                <td>کندی شدید، ابهام در آخرین مشاهده، سردرگمی در دانلود صوت</td>
+                <td>عادی با اولویت بالا</td>
+              </tr>
+              <tr>
+                <td><span class="tag info">بهبود</span></td>
+                <td>پیشنهادهایی برای افزایش رضایت و استفاده پذیری</td>
+                <td>بهبود جای جستجو، بهبود متن راهنما، بهبود نام گذاری بخش‌ها</td>
+                <td>عادی</td>
+              </tr>
+              <tr>
+                <td><span class="tag success">توسعه</span></td>
+                <td>درخواست‌های محتوایی یا قابلیت جدید</td>
+                <td>افزودن قاری، افزودن تفسیر جدید، توسعه امکانات دانلود چندتایی</td>
+                <td>ورود به نقشه راه</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="process">
+          <h2>فرآیند استاندارد ارجاع و تصمیم</h2>
+          <p>
+            این فرآیند در هشت گام تعریف شده است. هدف این است که گزارش از مرحله مشاهده تا مرحله نتیجه، مسیر روشن و قابل پیگیری داشته باشد.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>گام</th>
+                <th>عنوان</th>
+                <th>مالک گام</th>
+                <th>ورودی</th>
+                <th>خروجی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>۱</td>
+                <td>ثبت گزارش استاندارد</td>
+                <td>کارشناس صدای کاربر</td>
+                <td>بازخوردها و شواهد</td>
+                <td>گزارش کامل با اجزای لازم</td>
+              </tr>
+              <tr>
+                <td>۲</td>
+                <td>بازبینی کیفیت و تعیین فوریت</td>
+                <td>سرپرست صدای کاربر</td>
+                <td>گزارش ثبت شده</td>
+                <td>طبقه بندی اولیه و پیشنهاد مسیر</td>
+              </tr>
+              <tr>
+                <td>۳</td>
+                <td>تخصیص مالک تحلیل محصول</td>
+                <td>مدیر محصول یا مسئول محصول</td>
+                <td>طبقه بندی اولیه</td>
+                <td>تعیین مالک تصمیم و ثبت در مسیر پیگیری</td>
+              </tr>
+              <tr>
+                <td>۴</td>
+                <td>ترجمه به زبان تصمیم</td>
+                <td>مالک تحلیل محصول</td>
+                <td>گزارش و شواهد</td>
+                <td>گزینه‌های تصمیم، اثر، و معیار پذیرش</td>
+              </tr>
+              <tr>
+                <td>۵</td>
+                <td>برآورد فنی و طراحی</td>
+                <td>مسئول فنی و مسئول طراحی</td>
+                <td>گزینه‌های تصمیم</td>
+                <td>زمان و هزینه، وابستگی‌ها، نمونه راه حل</td>
+              </tr>
+              <tr>
+                <td>۶</td>
+                <td>تصمیم گیری در سطح مناسب</td>
+                <td>مالک تحلیل محصول یا مدیریت عامل</td>
+                <td>پرونده تصمیم کامل</td>
+                <td>تصمیم ثبت شده و مالک اجرا</td>
+              </tr>
+              <tr>
+                <td>۷</td>
+                <td>اجرا و کنترل کیفیت</td>
+                <td>تیم فنی و تیم تست و تیم طراحی</td>
+                <td>تصمیم و برنامه اجرا</td>
+                <td>نسخه اصلاح شده و گزارش کنترل کیفیت</td>
+              </tr>
+              <tr>
+                <td>۸</td>
+                <td>بازگشت نتیجه به صدای کاربر</td>
+                <td>مالک تحلیل محصول</td>
+                <td>خروجی اجرا</td>
+                <td>ثبت نتیجه، پیام به کاربران در صورت نیاز، و بستن پرونده</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="hr"></div>
+
+          <div class="callout">
+            <strong>نکته اجرایی</strong>
+            گام چهارم قلب این سند است.
+            بدون ترجمه گزارش به زبان تصمیم، هر ارجاع به سطح مدیریت ارشد، به جای تسهیل تصمیم، بار تصمیم گیری را افزایش می‌دهد.
+          </div>
+        </section>
+
+        <section class="card section" id="sla">
+          <h2>زمانبندی و تعهدات زمانی</h2>
+          <p>
+            زمانبندی استاندارد برای هر سطح اولویت به صورت زیر تعریف می‌شود.
+            این زمان‌ها از لحظه ثبت گزارش کامل محاسبه می‌شوند.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>سطح</th>
+                <th>حداکثر زمان تعیین تکلیف</th>
+                <th>حداکثر زمان ارائه برنامه اجرا</th>
+                <th>حداکثر زمان بازگشت نتیجه</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag danger">بحرانی</span></td>
+                <td>۲۴ ساعت</td>
+                <td>۴۸ ساعت</td>
+                <td>۷ روز کاری</td>
+              </tr>
+              <tr>
+                <td><span class="tag warning">مهم</span></td>
+                <td>۳ روز کاری</td>
+                <td>۵ روز کاری</td>
+                <td>۱۵ روز کاری</td>
+              </tr>
+              <tr>
+                <td><span class="tag info">بهبود</span></td>
+                <td>۵ روز کاری</td>
+                <td>۱۰ روز کاری</td>
+                <td>۳۰ روز کاری</td>
+              </tr>
+              <tr>
+                <td><span class="tag success">توسعه</span></td>
+                <td>۱۰ روز کاری</td>
+                <td>ورود به برنامه فصلی</td>
+                <td>طبق نقشه راه</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="note">
+            اگر زمان باقی مانده برای تصمیم کمتر از یک روز کاری باشد، باید زمان به ساعت بیان شود. در غیر این صورت، زمان به روز کاری بیان می‌گردد.
+          </p>
+        </section>
+
+        <section class="card section" id="ownership">
+          <h2>مالکیت، مسئولیت و سازوکار پیگیری</h2>
+          <p>
+            برای هر گزارش، یک پرونده پیگیری ایجاد می‌شود که شامل شناسه نامه، تاریخ ثبت، مالک تحلیل محصول، سطح اولویت، و وضعیت جاری است.
+            هر تغییر وضعیت باید توسط مالک گام مربوط ثبت شود و هیچ پرونده‌ای بدون ثبت نتیجه بسته نمی‌شود.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>وضعیت پرونده</th>
+                <th>تعریف</th>
+                <th>مالک تغییر وضعیت</th>
+                <th>معیار خروج از وضعیت</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ثبت شده</td>
+                <td>گزارش استاندارد ثبت شده و آماده بررسی است</td>
+                <td>صدای کاربر</td>
+                <td>تأیید کیفیت و طبقه بندی</td>
+              </tr>
+              <tr>
+                <td>در حال تحلیل</td>
+                <td>ترجمه به زبان تصمیم و استخراج گزینه‌ها</td>
+                <td>مالک تحلیل محصول</td>
+                <td>تهیه پرونده تصمیم</td>
+              </tr>
+              <tr>
+                <td>در حال برآورد</td>
+                <td>بررسی فنی و طراحی برای زمان و هزینه و وابستگی</td>
+                <td>مسئول فنی و طراحی</td>
+                <td>ارائه برآورد و معیار پذیرش</td>
+              </tr>
+              <tr>
+                <td>در انتظار تصمیم</td>
+                <td>پرونده تصمیم کامل شده و باید تعیین تکلیف شود</td>
+                <td>مالک تصمیم</td>
+                <td>ثبت تصمیم و مالک اجرا</td>
+              </tr>
+              <tr>
+                <td>در حال اجرا</td>
+                <td>اقدام در تیم‌های اجرایی و کنترل کیفیت</td>
+                <td>مالک اجرا</td>
+                <td>آماده سازی خروجی و تأیید کیفیت</td>
+              </tr>
+              <tr>
+                <td>بازگشت نتیجه</td>
+                <td>نتیجه به صدای کاربر منتقل شده و پیام رسانی لازم انجام شده است</td>
+                <td>مالک تحلیل محصول</td>
+                <td>ثبت نتیجه و بستن پرونده</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="communication">
+          <h2>الگوی مکاتبه و نحوه رونوشت</h2>
+          <p>
+            مکاتبه‌ها باید دقیقاً به اندازه لازم انجام شود.
+            رونوشت باید نقش محور باشد، نه اطلاع محور.
+            به بیان روشن، هیچ کس صرفاً برای اینکه در جریان باشد نباید رونوشت شود.
+            اگر نیاز به اطلاع رسانی گسترده وجود دارد، باید یک گزارش دوره‌ای جداگانه تولید شود، نه اینکه در هر نامه، رونوشت‌ها تکثیر شوند.
+          </p>
+
+          <div class="kpi">
+            <div class="box">
+              <div class="label"><span class="dot success"></span>رونوشت مجاز</div>
+              وقتی دریافت کننده یا تصمیم گیر است، یا اجرا کننده است، یا برای برآورد زمان و هزینه لازم است.
+            </div>
+            <div class="box">
+              <div class="label"><span class="dot danger"></span>رونوشت غیرمجاز</div>
+              وقتی دریافت کننده هیچ نقش مشخصی در تصمیم، اجرا یا برآورد ندارد و صرفاً برای اطلاع رونوشت می‌شود.
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <p>
+            متن ارجاع باید شامل چهار جزء باشد.
+            تعریف دقیق درخواست، سطح اولویت، خروجی مورد انتظار، و زمانبندی مورد انتظار.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>جزء متن ارجاع</th>
+                <th>شرح</th>
+                <th>نمونه قالب</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>تعریف درخواست</td>
+                <td>دقیقاً مشخص شود از دریافت کننده چه خواسته می‌شود</td>
+                <td>بررسی و ارائه گزینه تصمیم یا برآورد فنی</td>
+              </tr>
+              <tr>
+                <td>سطح اولویت</td>
+                <td>سطح بحرانی یا مهم یا بهبود یا توسعه ذکر شود</td>
+                <td>این مورد در سطح مهم طبقه بندی شده است</td>
+              </tr>
+              <tr>
+                <td>خروجی مورد انتظار</td>
+                <td>مستند تصمیم یا برآورد یا طرح طراحی یا گزارش کنترل کیفیت</td>
+                <td>پیوست یک صفحه تصمیم شامل گزینه‌ها و معیار پذیرش</td>
+              </tr>
+              <tr>
+                <td>زمانبندی</td>
+                <td>زمان به ساعت یا روز کاری مشخص شود</td>
+                <td>تا ۳ روز کاری آینده اعلام نظر شود</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="kpis">
+          <h2>شاخص‌ها و نتایج مورد انتظار</h2>
+          <p>
+            برای اینکه این سند صرفاً یک متن نباشد، شاخص‌های سنجش اجرا و نتایج مورد انتظار تعریف می‌شود.
+            این شاخص‌ها باید به صورت ماهانه پایش شوند و به مدیریت ارشد گزارش گردد.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>شاخص</th>
+                <th>تعریف</th>
+                <th>روش اندازه گیری</th>
+                <th>نتیجه مورد انتظار</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>نرخ تبدیل گزارش به اقدام</td>
+                <td>درصد گزارش‌هایی که به تصمیم ثبت شده و اقدام اجرایی تبدیل می‌شوند</td>
+                <td>تعداد پرونده‌های دارای وضعیت در حال اجرا تقسیم بر کل پرونده‌ها</td>
+                <td>افزایش ماهانه و تثبیت در سطح بالا</td>
+              </tr>
+              <tr>
+                <td>زمان چرخه تصمیم</td>
+                <td>زمان بین ثبت گزارش تا ثبت تصمیم</td>
+                <td>میانگین زمان برای هر سطح اولویت</td>
+                <td>کاهش پایدار، مخصوصاً در سطح بحرانی</td>
+              </tr>
+              <tr>
+                <td>زمان چرخه اجرا</td>
+                <td>زمان بین تصمیم تا بازگشت نتیجه</td>
+                <td>میانگین زمان بسته شدن پرونده</td>
+                <td>همسویی با زمانبندی سند</td>
+              </tr>
+              <tr>
+                <td>کاهش تکرار تماس</td>
+                <td>کاهش تعداد تماس‌های تکراری درباره همان مسئله</td>
+                <td>مقایسه تعداد درخواست قبل و بعد از اصلاح</td>
+                <td>کاهش محسوس در مسائل پرتکرار</td>
+              </tr>
+              <tr>
+                <td>کاهش هزینه پشتیبانی</td>
+                <td>کاهش زمان پاسخ دهی و هزینه انسانی مرتبط</td>
+                <td>میانگین زمان رسیدگی و تعداد پیام‌های رفت و برگشت</td>
+                <td>کاهش تدریجی</td>
+              </tr>
+              <tr>
+                <td>بهبود رضایت کاربر</td>
+                <td>بهبود شاخص‌های رضایت و کاهش شکایت‌ها</td>
+                <td>رصد کامنت‌ها و امتیاز فروشگاه و نظرسنجی</td>
+                <td>افزایش اعتماد و کاهش برداشت خرابی</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="artifacts">
+          <h2>پیوست‌ها و خروجی‌های لازم</h2>
+          <p>
+            برای اجرای استاندارد این سند، چند پیوست و خروجی عملیاتی باید همواره در دسترس باشد.
+            این پیوست‌ها می‌توانند در قالب فایل یا قالب سازمانی تهیه شوند.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>نام خروجی</th>
+                <th>کاربرد</th>
+                <th>مالک تولید</th>
+                <th>زمان تولید</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>پرونده تصمیم یک صفحه‌ای</td>
+                <td>ارائه گزینه‌ها، اثر، زمان، هزینه، معیار پذیرش، و پیشنهاد تصمیم</td>
+                <td>مالک تحلیل محصول</td>
+                <td>پیش از هر ارجاع به سطح مدیریت ارشد</td>
+              </tr>
+              <tr>
+                <td>برگه برآورد فنی</td>
+                <td>برآورد زمان و وابستگی‌ها و ریسک فنی</td>
+                <td>مسئول فنی</td>
+                <td>پیش از ثبت تصمیم نهایی</td>
+              </tr>
+              <tr>
+                <td>نمونه طراحی پیشنهادی</td>
+                <td>نمایش تغییر تجربه کاربر و متن‌های راهنما</td>
+                <td>مسئول طراحی تجربه کاربر</td>
+                <td>برای مسائل ابهام و تجربه کاربر</td>
+              </tr>
+              <tr>
+                <td>گزارش کنترل کیفیت</td>
+                <td>تأیید اینکه اصلاح انجام شده و در دستگاه‌ها و نسخه‌ها درست کار می‌کند</td>
+                <td>تیم تست</td>
+                <td>پیش از بستن پرونده</td>
+              </tr>
+              <tr>
+                <td>گزارش بازگشت نتیجه</td>
+                <td>ثبت اینکه چه شد و چه تغییری رخ داد و پیام رسانی به کاربر چگونه است</td>
+                <td>مالک تحلیل محصول</td>
+                <td>در پایان</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="risks">
+          <h2>ریسک‌ها و کنترل‌ها</h2>
+          <p>
+            اجرای این سند خود می‌تواند با ریسک‌هایی روبه رو شود.
+            برای هر ریسک، کنترل پیشنهادی ارائه می‌شود تا سند در عمل متوقف نشود.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ریسک</th>
+                <th>نشانه بروز</th>
+                <th>کنترل پیشنهادی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>افزایش رونوشت‌ها</td>
+                <td>افزایش دریافت کنندگان بدون نقش</td>
+                <td>الزام به ذکر نقش هر رونوشت در متن ارجاع و حذف رونوشت‌های بدون نقش</td>
+              </tr>
+              <tr>
+                <td>ارجاع به مدیریت ارشد بدون پرونده تصمیم</td>
+                <td>سؤال‌های متعدد از مدیریت عامل برای فهم مسئله</td>
+                <td>رد ارجاع و بازگشت به مالک تحلیل محصول تا تکمیل پرونده تصمیم</td>
+              </tr>
+              <tr>
+                <td>عدم بازگشت نتیجه به صدای کاربر</td>
+                <td>تکرار گزارش همان مسئله در ماه بعد</td>
+                <td>عدم امکان بستن پرونده بدون ثبت گزارش بازگشت نتیجه</td>
+              </tr>
+              <tr>
+                <td>تعارض بین واحدی</td>
+                <td>اختلاف در اولویت یا منابع</td>
+                <td>ارجاع به مدیریت عامل فقط همراه با گزینه‌های مشخص و اثر منابع</td>
+              </tr>
+              <tr>
+                <td>انباشت پرونده‌ها</td>
+                <td>افزایش پرونده‌های در حال تحلیل بدون خروجی</td>
+                <td>گزارش هفتگی پرونده‌های باز و تعیین تکلیف اجباری بر اساس زمانبندی</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="examples">
+          <h2>نمونه سناریو و مسیر درست</h2>
+          <p>
+            یک نمونه مسیر درست برای یک گزارش شامل خطای تجربه کاربری و اثر ادراکی به شکل زیر است.
+            هدف از این نمونه، نشان دادن ترتیب درست ارجاع‌ها و جلوگیری از رفت و برگشت بی دلیل است.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>مرحله</th>
+                <th>اقدام</th>
+                <th>خروجی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ثبت گزارش</td>
+                <td>صدای کاربر شواهد، تعداد گزارش، و مراحل بازتولید را ثبت می‌کند</td>
+                <td>گزارش استاندارد کامل</td>
+              </tr>
+              <tr>
+                <td>طبقه بندی</td>
+                <td>سرپرست صدای کاربر سطح مهم را تعیین می‌کند</td>
+                <td>تعیین مسیر عادی با اولویت بالا</td>
+              </tr>
+              <tr>
+                <td>ترجمه تصمیم</td>
+                <td>مالک تحلیل محصول گزینه‌ها و اثر را استخراج می‌کند</td>
+                <td>پرونده تصمیم یک صفحه‌ای</td>
+              </tr>
+              <tr>
+                <td>برآورد</td>
+                <td>فنی و طراحی زمان و راه حل را مشخص می‌کنند</td>
+                <td>برگه برآورد و نمونه طراحی</td>
+              </tr>
+              <tr>
+                <td>تصمیم</td>
+                <td>در سطح مالک تحلیل محصول تصمیم ثبت می‌شود، مگر تعارض منابع</td>
+                <td>تصمیم ثبت شده و مالک اجرا</td>
+              </tr>
+              <tr>
+                <td>اجرا و کنترل کیفیت</td>
+                <td>اصلاح انجام و کنترل کیفیت تکمیل می‌شود</td>
+                <td>گزارش کنترل کیفیت</td>
+              </tr>
+              <tr>
+                <td>بازگشت نتیجه</td>
+                <td>نتیجه به صدای کاربر بازگردانده می‌شود و در صورت نیاز پیام به کاربر آماده می‌گردد</td>
+                <td>بستن پرونده و ثبت نتیجه</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card section" id="governance">
+          <h2>حاکمیت و بازنگری سند</h2>
+          <p>
+            این سند یک سند عملیاتی است و باید متناسب با تجربه اجرا بهبود یابد.
+            پیشنهاد می‌شود بازنگری رسمی سند هر فصل انجام شود.
+            بازنگری باید بر اساس شاخص‌های سنجش اجرا، و همچنین بازخورد واحدهای درگیر انجام گردد.
+          </p>
+          <p>
+            مسئول پیشنهاد اصلاح سند، مالک تحلیل محصول به نمایندگی از تیم محصول و با همکاری سرپرست صدای کاربر است.
+            تصویب اصلاحات سند در سطح مدیریت عامل انجام می‌شود.
+          </p>
+
+          <div class="footer">
+            تهیه شده برای استفاده در اکوسیستم حبل المتین و بادصبا
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

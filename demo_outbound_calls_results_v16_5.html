@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>گزارش نتایج تماس خروجی کاربران نسخه 16.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --ink:#0f172a;
+    --muted:#475569;
+    --pri:#2563eb;
+    --line:#e5e7eb;
+    --warn:#f59e0b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Vazirmatn,Yekan,IranSans,sans-serif;
+    background:linear-gradient(180deg,#f8fafc,#eef2f7);
+    color:var(--ink);
+    line-height:2;
+  }
+  .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:48px 22px 80px;
+  }
+  header{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:40px;
+    margin-bottom:32px;
+    box-shadow:0 12px 30px rgba(15,23,42,.08);
+  }
+  h1{
+    margin:0 0 14px;
+    font-size:32px;
+    border-bottom:4px solid var(--pri);
+    padding-bottom:14px;
+  }
+  .meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+    margin-top:24px;
+  }
+  .meta div{
+    background:#f1f5f9;
+    border-radius:14px;
+    padding:16px;
+    font-size:14px;
+  }
+  .meta span{
+    color:var(--muted);
+    display:block;
+    font-size:13px;
+    margin-bottom:6px;
+  }
+  .section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:40px;
+    margin-bottom:28px;
+    box-shadow:0 10px 28px rgba(15,23,42,.06);
+  }
+  h2{
+    margin-top:0;
+    font-size:24px;
+    color:#1d4ed8;
+  }
+  h3{
+    margin-top:28px;
+    font-size:18px;
+    color:#334155;
+  }
+  p{margin:14px 0}
+  ul{margin:14px 0;padding-right:22px}
+  li{margin:8px 0}
+  .note{
+    background:#fff7ed;
+    border-right:6px solid var(--warn);
+    padding:20px 24px;
+    border-radius:16px;
+    margin:20px 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>گزارش نتایج تماس خروجی با کاربران نسخه 16.5 بادصبا</h1>
+  <div class="meta">
+    <div><span>موضوع</span>بررسی تجربه کاربران دچار کرش / صفحه سیاه</div>
+    <div><span>واحد اجراکننده</span>تیم صدای کاربر (VOC)</div>
+    <div><span>درخواست‌کننده</span>تیم محصول</div>
+    <div><span>هدف تماس</span>عذرخواهی، دریافت تجربه واقعی، ارسال نسخه اصلاح‌شده، جمع‌آوری داده Post‑Mortem</div>
+    <div><span>تاریخ اجرا</span>1404/09/17</div>
+  </div>
+</header>
+
+<section class="section">
+  <h2>1. شرح اقدام</h2>
+  <p>
+    طبق درخواست تیم محصول، تماس خروجی با تعدادی از کاربرانی که در گزارش‌های سیستمی
+    به‌عنوان کاربران دارای کرش در نسخه 16.5 شناسایی شده بودند انجام شد.
+  </p>
+  <p>
+    هدف تماس‌ها دریافت تجربه مستقیم کاربران، بررسی وضعیت فعلی مشکل و در صورت نیاز،
+    ارسال نسخه اصلاح‌شده برنامه بوده است.
+  </p>
+</section>
+
+<section class="section">
+  <h2>2. دامنه تماس‌ها</h2>
+  <p>تعداد تماس برقرارشده یا تلاش برای تماس: <strong>19 نفر</strong></p>
+</section>
+
+<section class="section">
+  <h2>3. وضعیت تماس‌ها (خلاصه اجرایی)</h2>
+  <ul>
+    <li>عدم پاسخ‌گویی به تماس: 11 مورد</li>
+    <li>عدم امکان مکالمه در زمان تماس: 3 مورد</li>
+    <li>اعلام عدم بروز مشکل: 2 مورد</li>
+    <li>گزارش تجربه مستقیم مشکل: 3 مورد</li>
+  </ul>
+  <div class="note">
+    به‌دلیل عدم پاسخ‌گویی بخش قابل‌توجهی از کاربران، حجم داده‌های کیفی محدود است.
+  </div>
+</section>
+
+<section class="section">
+  <h2>4. یافته‌های حاصل از تماس با کاربران دارای تجربه مشکل</h2>
+
+  <h3>الگوی مشترک</h3>
+  <p>
+    مشکل گزارش‌شده در هر سه مورد: نمایش صفحه سیاه در اجرای اولیه برنامه.
+  </p>
+
+  <h3>وضعیت رفع مشکل</h3>
+  <ul>
+    <li>
+      <strong>2 کاربر:</strong>
+      مشکل پس از حذف و نصب مجدد برنامه برطرف شده و در حال حاضر برنامه بدون اختلال اجرا می‌شود.
+    </li>
+    <li>
+      <strong>1 کاربر:</strong>
+      بدون انجام هیچ اقدام مشخصی، مشکل به‌صورت خودبه‌خود برطرف شده و برنامه در وضعیت عادی قرار دارد.
+    </li>
+  </ul>
+
+  <h3>ارسال نسخه اصلاح‌شده</h3>
+  <p>
+    پیشنهاد ارسال نسخه به‌روز جهت جلوگیری از تکرار مشکل مطرح شد.
+    در یک مورد، کاربر تمایلی به دریافت لینک نداشت و اعلام کرد در صورت نیاز،
+    به‌روزرسانی را شخصاً از مارکت انجام خواهد داد.
+  </p>
+</section>
+
+<section class="section">
+  <h2>5. نتایج مرتبط با اهداف تماس</h2>
+  <ul>
+    <li>عذرخواهی و ارتباط انسانی در تمامی تماس‌های برقرارشده انجام شد.</li>
+    <li>تجربه دقیق کاربران دارای مشکل ثبت و مستند شد.</li>
+    <li>پیشنهاد ارسال نسخه سالم ارائه شد و تصمیم نهایی به کاربر واگذار شد.</li>
+  </ul>
+  <p>
+    داده‌های کیفی استخراج‌شده نشان می‌دهد مشکل محدود به تعداد کمی از کاربران بوده،
+    عمدتاً به اجرای اولیه برنامه مرتبط بوده و در همه موارد گزارش‌شده،
+    در حال حاضر برطرف شده است.
+  </p>
+</section>
+
+<section class="section">
+  <h2>6. جمع‌بندی مدیریتی</h2>
+  <ul>
+    <li>3 کاربر تجربه بروز مشکل کرش / صفحه سیاه را گزارش کردند.</li>
+    <li>در هر 3 مورد، مشکل مربوط به اجرای اولیه برنامه بوده است.</li>
+    <li>وضعیت فعلی هر 3 کاربر در زمان تماس نرمال بوده و مشکل فعال گزارش نشده است.</li>
+    <li>سایر کاربران یا به تماس پاسخ ندادند یا امکان دریافت بازخورد فراهم نشد.</li>
+  </ul>
+  <p>
+    با توجه به عدم پاسخ‌گویی بیشتر کاربران معرفی‌شده،
+    بازخوردهای دریافت‌شده محدود به کاربران پاسخ‌گو است.
+  </p>
+</section>
+
+</div>
+</body>
+</html>

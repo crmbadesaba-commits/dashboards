@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>گزارش دمو – نقش عملیاتی واحد صدای کاربر در انتشار نسخه 16.5</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f3f4f6;
+      font-family: Vazirmatn, Yekan, IranSans, sans-serif;
+      color: #111827;
+      line-height: 2;
+    }
+    .wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 28px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #ffffff;
+      padding: 64px;
+      border-radius: 24px;
+      margin-bottom: 56px;
+    }
+    .hero h1 {
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 1000px;
+      opacity: 0.95;
+    }
+    .section {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 48px;
+      margin-bottom: 48px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+    }
+    h2 {
+      font-size: 26px;
+      margin-bottom: 28px;
+      color: #4338ca;
+    }
+    h3 {
+      font-size: 20px;
+      margin-top: 36px;
+      color: #1f2937;
+    }
+    ul {
+      padding-right: 24px;
+    }
+    .timeline {
+      border-right: 5px solid #e5e7eb;
+      padding-right: 36px;
+      margin-top: 32px;
+    }
+    .step {
+      position: relative;
+      margin-bottom: 48px;
+      padding-right: 24px;
+    }
+    .step::before {
+      content: "";
+      position: absolute;
+      right: -44px;
+      top: 8px;
+      width: 18px;
+      height: 18px;
+      background: #4338ca;
+      border-radius: 50%;
+    }
+    .badge {
+      display: inline-block;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .method {
+      background: #f8fafc;
+      border-right: 6px solid #6366f1;
+      padding: 28px;
+      border-radius: 18px;
+      margin-top: 24px;
+    }
+    .highlight {
+      background: #fff7ed;
+      border-right: 6px solid #f97316;
+      padding: 28px;
+      border-radius: 18px;
+      margin-top: 24px;
+    }
+    .impact {
+      background: #ecfeff;
+      border-right: 6px solid #06b6d4;
+      padding: 36px;
+      border-radius: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="hero">
+      <h1>نسخه 16.5 | مستندسازی کامل نقش واحد صدای کاربر در فرآیند انتشار</h1>
+      <p>
+        این گزارش برای ارائه در دمو تهیه شده و به‌صورت دقیق، داده‌محور و مستند نشان می‌دهد
+        که واحد «صدای کاربر» از ابتدای <strong>انتشار تدریجی نسخه 16.5</strong> تا
+        رسیدن نسخه به <strong>انتشار 100٪ در تاریخ 4 آذر</strong>، چگونه به‌طور روزانه
+        بازخورد کاربران را دریافت، تحلیل، ساختاربندی و به گزارش‌های تصمیم‌ساز تبدیل کرده است.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>منابع دریافت داده (Data Sources)</h2>
+      <p>
+        تمامی تحلیل‌ها و گزارش‌های روزانه نسخه 16.5 مبتنی بر داده‌های واقعی کاربران بوده
+        و از کانال‌های رسمی زیر دریافت شده است:
+      </p>
+      <ul>
+        <li>
+          <strong>پیشخوان برنامه:</strong> شامل پیام‌های مستقیم کاربران، گزارش خطا،
+          سوالات فیچری، انتقادها، پیشنهادها و پیام‌های نامفهوم.
+        </li>
+        <li>
+          <strong>پنل کافه‌بازار:</strong> شامل کامنت‌های کاربران در نسخه‌های مختلف
+          با تفکیک ستاره، متن بازخورد و روند تغییرات روزانه.
+        </li>
+      </ul>
+      <p>
+        داده‌ها به‌صورت روزانه استخراج می‌شدند و هیچ تحلیل یا نتیجه‌گیری‌ای
+        خارج از این دو بستر انجام نشده است.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>الگوی رصد و پایش داده‌ها</h2>
+      <div class="method">
+        <p>
+          پایش نسخه 16.5 بر اساس «بررسی موردی» انجام نشد؛ بلکه مبتنی بر
+          <strong>الگوهای تکرارشونده و روندها</strong> بود. در هر روز، موارد زیر
+          به‌صورت ثابت بررسی می‌شد:
+        </p>
+        <ul>
+          <li>حجم کل بازخوردهای روزانه در هر بستر</li>
+          <li>تفکیک موضوعی پیام‌ها (اذان، اعلان، فیچرها، نامفهوم، متفرقه)</li>
+          <li>تفکیک پیام‌های قابل اقدام از نویز داده‌ای</li>
+          <li>مقایسه روند روز جاری با روزهای قبل</li>
+          <li>شناسایی افزایش یا کاهش معنادار یک محور مشخص</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>ساختار گزارش‌های روزانه ارسالی</h2>
+      <p>
+        گزارش‌های روزانه نسخه 16.5 همگی با یک چارچوب ثابت و قابل مقایسه تهیه شدند
+        تا امکان تصمیم‌گیری تدریجی فراهم شود:
+      </p>
+      <ul>
+        <li><strong>Data Scope:</strong> توضیح دامنه داده‌های بررسی‌شده همان روز</li>
+        <li><strong>خلاصه مدیریتی:</strong> جمع‌بندی کوتاه و تصمیم‌محور</li>
+        <li><strong>تحلیل پیشخوان:</strong> بررسی پیام‌های مستقیم کاربران</li>
+        <li><strong>تحلیل کافه‌بازار:</strong> تحلیل کامنت‌ها و امتیازها</li>
+        <li><strong>Bias & Risk:</strong> اشاره به ریسک‌های برداشت اشتباه</li>
+        <li><strong>جمع‌بندی و پیشنهاد:</strong> پیشنهاد مشخص برای اقدام یا عدم اقدام</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Timeline عملیاتی – از انتشار تدریجی تا 100٪</h2>
+      <div class="timeline">
+        <div class="step">
+          <span class="badge">شروع انتشار تدریجی</span>
+          <p>
+            با انتشار نسخه برای درصد محدودی از کاربران، فرآیند گزارش‌دهی روزانه آغاز شد.
+            هدف در این مرحله، شناسایی زودهنگام الگوهای مسئله‌دار قبل از گسترش نسخه بود.
+          </p>
+        </div>
+        <div class="step">
+          <span class="badge">گزارش‌های روزانه پیوسته</span>
+          <p>
+            بدون وقفه و مستقل از شدت بازخوردها، هر روز گزارش تهیه و ارسال شد؛
+            حتی در روزهایی که داده‌ها نویز بالا داشتند.
+          </p>
+        </div>
+        <div class="step">
+          <span class="badge">افزایش تدریجی درصد انتشار</span>
+          <p>
+            هم‌زمان با افزایش سهم انتشار نسخه، روندها مجدداً بررسی شد
+            تا از عدم تشدید یک مشکل خاص اطمینان حاصل شود.
+          </p>
+        </div>
+        <div class="step">
+          <span class="badge">انتشار 100٪ – 4 آذر</span>
+          <p>
+            نسخه در تاریخ 4 آذر به انتشار کامل رسید؛ در حالی که مسیر آن
+            از ابتدا تا این نقطه، به‌صورت روزانه پایش و مستند شده بود.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>نمونه واقعی از گزارش روزانه</h2>
+      <div class="highlight">
+        <strong>نمونه – تاریخ 2 دی:</strong><br><br>
+        بررسی 32 بازخورد پیشخوان نشان داد 12 مورد مربوط به تأخیر یا عدم پخش اذان است.
+        پیام‌های نامفهوم و متفرقه سهم بالایی دارند و نباید مبنای تصمیم‌گیری قرار گیرند.
+        پیشنهاد گزارش: تمرکز تصمیم‌گیری روی محور اذان و پرهیز از تعمیم سایر پیام‌ها.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>ارزش ایجادشده برای تصمیم‌گیری</h2>
+      <div class="impact">
+        <ul>
+          <li>همراهی در رسیدن نسخه به انتشار 100٪ با دید شفاف</li>
+          <li>کاهش ریسک تصمیم‌گیری دیرهنگام یا واکنشی</li>
+          <li>ایجاد زبان مشترک بین صدای کاربر، محصول و مدیریت</li>
+          <li>تبدیل صدای کاربر از نقش واکنشی به نقش عملیاتی و پیشگیرانه</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>گزارش دمو | نامه «پروفایل ناب» → اقدام عملیاتی صدای کاربر</title>
+<style>
+  :root{
+    --bg:#0b1020;
+    --paper:#0f172a;
+    --card:#111c35;
+    --card2:#0f1a33;
+    --txt:#e5e7eb;
+    --muted:#94a3b8;
+    --pri:#60a5fa;
+    --pri2:#a78bfa;
+    --ok:#34d399;
+    --warn:#fbbf24;
+    --bad:#fb7185;
+    --stroke:rgba(148,163,184,.18);
+    --shadow:0 30px 60px rgba(0,0,0,.35);
+    --r:22px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Vazirmatn,Yekan,IranSans,system-ui,-apple-system,Segoe UI,Roboto;
+    color:var(--txt);
+    background:radial-gradient(1200px 700px at 15% -5%, rgba(96,165,250,.22), transparent 60%),
+               radial-gradient(900px 600px at 85% 10%, rgba(167,139,250,.18), transparent 55%),
+               linear-gradient(180deg, #050814, #0b1020 55%, #050814);
+    line-height:2;
+  }
+  .wrap{max-width:1240px;margin:0 auto;padding:34px 18px 80px}
+  .hero{
+    background:linear-gradient(135deg, rgba(17,28,53,.92), rgba(15,26,51,.92));
+    border:1px solid var(--stroke);
+    border-radius:28px;
+    padding:34px 30px;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero:before{
+    content:"";
+    position:absolute; inset:-2px;
+    background:radial-gradient(400px 220px at 20% 10%, rgba(96,165,250,.22), transparent 60%),
+               radial-gradient(380px 220px at 80% 25%, rgba(167,139,250,.22), transparent 60%);
+    pointer-events:none;
+  }
+  .hero *{position:relative}
+  .badge{display:inline-flex;gap:10px;align-items:center;padding:8px 12px;border-radius:999px;
+          border:1px solid var(--stroke); background:rgba(2,6,23,.45); font-weight:800; font-size:12px}
+  .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--pri),var(--pri2))}
+  h1{margin:12px 0 0;font-size:30px;letter-spacing:-.2px}
+  .sub{margin:10px 0 0;color:var(--muted);max-width:980px}
+  .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:18px}
+  @media(max-width:980px){.grid{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg, rgba(17,28,53,.92), rgba(15,26,51,.92));
+         border:1px solid var(--stroke); border-radius:var(--r); padding:22px; box-shadow:0 14px 35px rgba(0,0,0,.28)}
+  .card h2{margin:0 0 10px;font-size:20px}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;
+        border:1px solid var(--stroke); background:rgba(2,6,23,.35); font-weight:800; font-size:12px}
+  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+  @media(max-width:980px){.kpi{grid-template-columns:repeat(2,1fr)}}
+  .tile{border:1px solid var(--stroke);border-radius:18px;padding:14px 14px 12px;background:rgba(2,6,23,.38)}
+  .tile .t{font-size:12px;color:var(--muted);font-weight:800}
+  .tile .v{font-size:22px;font-weight:900;margin-top:2px}
+  .tile .h{font-size:12px;color:var(--muted);margin-top:4px}
+  .accent{color:var(--pri)}
+  .accent2{color:var(--pri2)}
+  .ok{color:var(--ok)}
+  .warn{color:var(--warn)}
+  .bad{color:var(--bad)}
+  .section{margin-top:18px}
+  .secTitle{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px}
+  .tag{font-size:12px;font-weight:900;color:#0b1020;background:linear-gradient(90deg,var(--pri),var(--pri2));
+        padding:6px 10px;border-radius:999px}
+  .muted{color:var(--muted)}
+  ul{margin:8px 0 0;padding:0 18px}
+  li{margin:6px 0}
+  .quote{
+    border:1px dashed rgba(96,165,250,.35);
+    background:rgba(2,6,23,.35);
+    border-radius:18px;
+    padding:14px 16px;
+    margin-top:10px;
+    color:#e9efff;
+  }
+  .timeline{border-right:4px solid rgba(148,163,184,.22);padding-right:18px;margin-top:10px}
+  .step{position:relative;padding-right:14px;margin:14px 0}
+  .step:before{content:"";position:absolute;right:-26px;top:7px;width:14px;height:14px;border-radius:50%;
+                background:linear-gradient(90deg,var(--pri),var(--pri2))}
+  .step h3{margin:0;font-size:15px}
+  .step p{margin:6px 0 0;color:var(--muted)}
+  .barRow{display:grid;grid-template-columns:110px 1fr 90px;gap:10px;align-items:center;margin:10px 0}
+  .barLbl{font-weight:800;font-size:12px;color:var(--muted)}
+  .barWrap{height:10px;border-radius:999px;background:rgba(148,163,184,.16);overflow:hidden;border:1px solid rgba(148,163,184,.12)}
+  .bar{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--pri),rgba(96,165,250,.15))}
+  .bar.alt{background:linear-gradient(90deg,var(--pri2),rgba(167,139,250,.15))}
+  .barVal{text-align:left;font-weight:900}
+  .table{width:100%;border-collapse:separate;border-spacing:0;margin-top:10px;overflow:hidden;border-radius:18px;border:1px solid var(--stroke)}
+  .table th,.table td{padding:10px 12px;border-bottom:1px solid rgba(148,163,184,.16);vertical-align:top}
+  .table th{background:rgba(2,6,23,.45);font-size:12px;color:var(--muted);text-align:right}
+  .table tr:last-child td{border-bottom:none}
+  .small{font-size:12px;color:var(--muted)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+  details{border:1px solid var(--stroke);border-radius:18px;background:rgba(2,6,23,.30);padding:10px 12px}
+  summary{cursor:pointer;font-weight:900}
+  .callout{border-right:5px solid var(--pri);padding:12px 14px;border-radius:16px;background:rgba(2,6,23,.35);margin-top:10px}
+  .footer{margin-top:22px;text-align:center;color:var(--muted);font-size:12px}
+  .print{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btn{border:1px solid var(--stroke);background:rgba(2,6,23,.35);color:var(--txt);
+        padding:9px 12px;border-radius:14px;font-weight:900;cursor:pointer}
+  .btn:hover{transform:translateY(-1px)}
+  @media print{
+    body{background:#fff;color:#0f172a}
+    .hero,.card,details{box-shadow:none}
+    .btn{display:none}
+    .wrap{max-width:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="badge"><span class="dot"></span>سند دمو · واحد صدای کاربر · «پروفایل ناب»</div>
+    <h1>از «نامه محصول» تا «جریان پایدار گزارش‌دهی»</h1>
+    <p class="sub">
+      این گزارش نشان می‌دهد درخواست رسمی محصول برای استخراج موارد «ارسال لینک ناب» چگونه به یک فرآیند قابل اتکا تبدیل شد:
+      <span class="accent">استخراج تاریخی</span> + <span class="accent2">گزارش هفتگی</span> + <span class="ok">استانداردسازی پیام</span>.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="secTitle">
+          <h2>خلاصه مدیریتی (Decision-ready)</h2>
+          <span class="tag">Executive</span>
+        </div>
+        <ul>
+          <li>با دریافت نامه محصول، «ستون‌های استاندارد استخراج» تعریف و روی داده‌های گذشته اعمال شد (کانال، تاریخ، متن درخواست، اقدام، شناسه، وضعیت).</li>
+          <li>هم‌زمان، گزارش‌های «از ابتدای سال تا ۱۰ آذر ۱۴۰۴» آماده شد و از این پس «ریتم هفتگی» برقرار است.</li>
+          <li>برای جلوگیری از برداشت «راه‌حل اجباری»، سند استاندارد لحن/پیام تدوین شد تا معرفی ناب، «ارتقای تجربه» باشد نه «رفع ناراحتی با پرداخت».</li>
+        </ul>
+
+        <div class="callout">
+          <div style="font-weight:900">انتظار تصمیم در دمو</div>
+          <div class="small">۱) تایید رسمی مالکیت ریتم هفتگی و مخاطب گزارش · ۲) تایید ستون‌های داده و سطح ناشناس‌سازی · ۳) تعیین اینکه چه الگوهایی باید به محصول/مارکتینگ Action بدهند.</div>
+        </div>
+
+        <div class="kpi">
+          <div class="tile">
+            <div class="t">کل رکوردهای استخراج‌شده</div>
+            <div class="v">432</div>
+            <div class="h">بازه: ۱ فروردین تا ۱۰ آذر ۱۴۰۴</div>
+          </div>
+          <div class="tile">
+            <div class="t">«لینک ناب ارسال شده»</div>
+            <div class="v ok">402</div>
+            <div class="h">اقدام اصلی</div>
+          </div>
+          <div class="tile">
+            <div class="t">تیکت/پیام باز</div>
+            <div class="v warn">26</div>
+            <div class="h">نیازمند پیگیری</div>
+          </div>
+          <div class="tile">
+            <div class="t">آرشیو</div>
+            <div class="v bad">4</div>
+            <div class="h">موارد غیرقابل ادامه</div>
+          </div>
+        </div>
+        <div class="small" style="margin-top:10px">* این اعداد از فایل اکسل «گزارشات پیشخوان ناب – ۱ فروردین تا ۱۰ آذر ۱۴۰۴» استخراج شده‌اند (پیوست).</div>
+      </div>
+
+      <div class="card">
+        <div class="secTitle">
+          <h2>نامه محصول چه می‌خواست؟</h2>
+          <span class="tag">Input</span>
+        </div>
+        <ul>
+          <li><b>استخراج ۶ ماه گذشته</b>: هر مسیر ارتباطی که به ارسال لینک ناب منجر شده.</li>
+          <li>ستون‌ها: تاریخ+کانال، متن/شرح، اقدام (ارسال لینک)، شناسه/شماره (در صورت امکان)، وضعیت نهایی.</li>
+          <li><b>از این هفته به بعد</b>: گزارش اکسل هفتگی و ارسال پایان چهارشنبه.</li>
+        </ul>
+        <div class="quote small">
+          نکته کلیدی نامه: گزارش برای «پایش روند تقاضا» و «تصمیم‌گیری مارکتینگ و محصول» استفاده می‌شود.
+        </div>
+
+        <div class="pills">
+          <span class="pill">Data Extraction</span>
+          <span class="pill">Weekly Reporting</span>
+          <span class="pill">User Behavior Insight</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card">
+    <div class="secTitle">
+      <h2>ما از کجا داده گرفتیم و چطور «قابل اتکا» کردیم؟</h2>
+      <span class="tag">Data & QA</span>
+    </div>
+
+    <div class="grid" style="margin-top:12px">
+      <div>
+        <h3 style="margin:0 0 6px">منابع داده (Data Sources)</h3>
+        <ul>
+          <li><b>پیشخوان:</b> تیکت‌ها/پیام‌های درون برنامه (ستون‌های تاریخ، کانال، متن، اقدام، وضعیت).</li>
+          <li><b>سوشال:</b> مواردی که به ارسال لینک ناب ختم شده (در گزارش‌های هفتگی ثبت می‌شود).</li>
+          <li><b>پنل کافه‌بازار:</b> برای رصد بازخورد عمومی و هم‌زمان‌سازی با روند تقاضا.</li>
+        </ul>
+
+        <h3 style="margin:18px 0 6px">کنترل کیفیت (QA Guards)</h3>
+        <ul>
+          <li>ستون‌بندی ثابت برای همه کانال‌ها (برای مقایسه روندها).</li>
+          <li>ثبت «وضعیت نهایی» برای جلوگیری از گزارش‌های صرفاً شمارشی.</li>
+          <li>ناشناس‌سازی شماره تماس در فایل دمو/ارائه (حفظ حریم خصوصی).</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="margin:0 0 6px">چرخه عملیاتی (Operational Loop)</h3>
+        <div class="timeline">
+          <div class="step">
+            <h3>۱) دریافت پیام از کانال</h3>
+            <p>ثبت تاریخ/کانال/شرح درخواست</p>
+          </div>
+          <div class="step">
+            <h3>۲) تصمیم معرفی ناب یا حل مسئله</h3>
+            <p>بر اساس چارچوب A/B/C (جلوگیری از حس اجبار)</p>
+          </div>
+          <div class="step">
+            <h3>۳) اقدام</h3>
+            <p>ارسال لینک استاندارد + راهنمای کوتاه</p>
+          </div>
+          <div class="step">
+            <h3>۴) ثبت وضعیت نهایی</h3>
+            <p>حل‌شده / نیازمند پیگیری / ارجاع</p>
+          </div>
+          <div class="step">
+            <h3>۵) تجمیع و گزارش‌دهی هفتگی</h3>
+            <p>ارسال اکسل برای محصول (پایان چهارشنبه)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section grid">
+    <div class="card">
+      <div class="secTitle">
+        <h2>تصویر داده‌های «از ابتدای سال تا ۱۰ آذر ۱۴۰۴»</h2>
+        <span class="tag">YTD</span>
+      </div>
+      <p class="muted" style="margin:0">روند تجمیعی تعداد موارد ثبت‌شده (به تفکیک ماه شمسی):</p>
+      
+      <div class="barRow">
+        <div class="barLbl">1404/01</div>
+        <div class="barWrap"><div class="bar" style="width:100%"></div></div>
+        <div class="barVal">88</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/02</div>
+        <div class="barWrap"><div class="bar" style="width:75%"></div></div>
+        <div class="barVal">66</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/03</div>
+        <div class="barWrap"><div class="bar" style="width:70%"></div></div>
+        <div class="barVal">62</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/04</div>
+        <div class="barWrap"><div class="bar" style="width:43%"></div></div>
+        <div class="barVal">38</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/05</div>
+        <div class="barWrap"><div class="bar" style="width:42%"></div></div>
+        <div class="barVal">37</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/06</div>
+        <div class="barWrap"><div class="bar" style="width:47%"></div></div>
+        <div class="barVal">41</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/07</div>
+        <div class="barWrap"><div class="bar" style="width:44%"></div></div>
+        <div class="barVal">39</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/08</div>
+        <div class="barWrap"><div class="bar" style="width:47%"></div></div>
+        <div class="barVal">41</div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">1404/09</div>
+        <div class="barWrap"><div class="bar" style="width:23%"></div></div>
+        <div class="barVal">20</div>
+      </div>
+    
+      <details style="margin-top:10px">
+        <summary>چرا این نمودار مهم است؟</summary>
+        <div class="small" style="margin-top:8px">
+          این نمودار به محصول کمک می‌کند بفهمد «تقاضا» چه زمانی شدت گرفته و آیا با تغییرات UI/تبلیغات/اذان هم‌زمان بوده یا نه؛
+          بدون اینکه تحلیل به حدس تبدیل شود.
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="secTitle">
+        <h2>الگوهای اصلی درخواست‌ها (Intent)</h2>
+        <span class="tag">Patterns</span>
+      </div>
+      <p class="muted" style="margin:0">تقریبِ دسته‌بندی بر اساس متن پیام کاربر (کلیدواژه):</p>
+      
+      <div class="barRow">
+        <div class="barLbl">خرید/اطلاعات اشتراک ناب</div>
+        <div class="barWrap"><div class="bar alt" style="width:100%"></div></div>
+        <div class="barVal">183 <span class="muted">(42.4٪)</span></div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">اذان/موذن دلخواه</div>
+        <div class="barWrap"><div class="bar alt" style="width:66%"></div></div>
+        <div class="barVal">121 <span class="muted">(28.0٪)</span></div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">حذف/نارضایتی از تبلیغات</div>
+        <div class="barWrap"><div class="bar alt" style="width:61%"></div></div>
+        <div class="barVal">111 <span class="muted">(25.7٪)</span></div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">سایر</div>
+        <div class="barWrap"><div class="bar alt" style="width:7%"></div></div>
+        <div class="barVal">13 <span class="muted">(3.0٪)</span></div>
+      </div>
+    
+
+      <div class="barRow">
+        <div class="barLbl">اعلان/نوتیفیکیشن</div>
+        <div class="barWrap"><div class="bar alt" style="width:2%"></div></div>
+        <div class="barVal">4 <span class="muted">(0.9٪)</span></div>
+      </div>
+    
+      <div class="small" style="margin-top:10px">
+        سهم بالای «حذف تبلیغات» و «اذان/موذن دلخواه» با نمونه‌های گزارش هفتگی هم هم‌راستا است. fileciteturn1file5
+      </div>
+    </div>
+  </section>
+
+  <section class="section card">
+    <div class="secTitle">
+      <h2>نمونه واقعی از گزارش هفتگی (برای اینکه دمو «واقعی» باشد)</h2>
+      <span class="tag">Weekly Sample</span>
+    </div>
+    <p class="muted" style="margin:0">
+      نمونه زیر از گزارش ۱۹ تا ۲۵ آذر ۱۴۰۴ است و نشان می‌دهد ستون‌بندی، کانال، اقدام و وضعیت چگونه ثبت می‌شود. fileciteturn1file12
+    </p>
+
+    <div class="grid" style="margin-top:12px">
+      <div>
+        <h3 style="margin:0 0 6px">سه سناریوی پرتکرار (نمونه متنی)</h3>
+
+        <div class="quote">
+          <b>راهنمای خرید ناب / نبودن در بازار</b><br>
+          کاربر می‌پرسد «نسخه ناب رو چجوری بخرم…» و پاسخ استاندارد شامل معرفی مزیت‌ها و لینک <span class="mono">zaya.io/nab1</span> است. fileciteturn1file5
+        </div>
+
+        <div class="quote">
+          <b>موذن دلخواه</b><br>
+          درخواست‌هایی مثل «اذان فلان موذن در لیست نیست…» با ارسال لینک و توضیح تنظیم موذن دلخواه پوشش داده شده است. fileciteturn1file12
+        </div>
+
+        <div class="quote">
+          <b>اعتراض به تبلیغات/پیامک تبلیغاتی</b><br>
+          سناریوی «نمی‌خوام پیامک تبلیغات بیاد» با معرفی ناب به‌عنوان تجربه خلوت‌تر و بدون تبلیغ پاسخ داده شده است. fileciteturn1file7
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin:0 0 6px">نمونه قالب اکسل (Demo-safe / ناشناس‌شده)</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>تاریخ</th>
+              <th>کانال</th>
+              <th>شناسه (ماسک)</th>
+              <th>خلاصه پیام</th>
+              <th>اقدام</th>
+              <th>وضعیت</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+      <tr>
+        <td>1404/02/12</td>
+        <td>درون برنامه</td>
+        <td class="mono">9891***586</td>
+        <td class="small">1- سلام من اشتراک ناب رو سه ماه خریداری کردم بی‌زحمت دائمی  شو با تیم صحبت کنید و گزینه شو بزارید برای انتخاب یا اگه میشه برای من انجام بدید چون از برنامه های م…</td>
+        <td>لینک ناب ارسال شده</td>
+        <td>بسته</td>
+      </tr>
+    
+
+      <tr>
+        <td>1404/03/22</td>
+        <td>درون برنامه</td>
+        <td class="mono">9899***743</td>
+        <td class="small">1- سلام من اشتراک ناب دارم نمیتونم استفاده کنم</td>
+        <td>لینک ناب ارسال شده</td>
+        <td>باز</td>
+      </tr>
+    
+
+      <tr>
+        <td>1404/03/06</td>
+        <td>درون برنامه</td>
+        <td class="mono">9893***661</td>
+        <td class="small">1- من نسخه ناب پرداخت کردم چرا هنوز فعال نشده برام</td>
+        <td>پیام سوییچ رو پروفایل ناب ارسال شده</td>
+        <td>باز</td>
+      </tr>
+    
+
+      <tr>
+        <td>1404/07/19</td>
+        <td>درون برنامه</td>
+        <td class="mono">9890***126</td>
+        <td class="small">1- سلام و درود.اپلیکشن خیلی خوبه ولی ایکاش میشد در بخش ،پخش هشدار قبل از اذان (نماهنگ مورد علاقه خود)را پخش میکرد.درصورتی که باید حتما از اعلان های خود اپلیکیشن…</td>
+        <td>لینک ناب ارسال شده</td>
+        <td>بسته</td>
+      </tr>
+    
+
+      <tr>
+        <td>1404/05/31</td>
+        <td>درون برنامه</td>
+        <td class="mono">9892***239</td>
+        <td class="small">1- اشتراک بادصبادی ناب داشتم تموم شد دوباره اشتراک تمدید کردم ولی بادصبای ناب ندارم</td>
+        <td>لینک ناب ارسال شده</td>
+        <td>باز</td>
+      </tr>
+    
+
+      <tr>
+        <td>1404/06/26</td>
+        <td>تماس ورودی</td>
+        <td class="mono">9891***259</td>
+        <td class="small">1- سلام اشتراک ناب داشتم تموم شده الان از کجا میتونم تهیه کنم؟</td>
+        <td>ارجاع به پشتیبانی جهت ارسال لینک</td>
+        <td>بسته</td>
+      </tr>
+    
+          </tbody>
+        </table>
+        <div class="small" style="margin-top:10px">
+          * این جدول از داده‌های واقعی استخراج شده، اما شناسه‌ها برای دمو ماسک شده‌اند.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card">
+    <div class="secTitle">
+      <h2>استانداردسازی لحن و پیام: چرا این بخش «ارزش» است نه تزئین؟</h2>
+      <span class="tag">Standard</span>
+    </div>
+
+    <div class="grid" style="margin-top:12px">
+      <div>
+        <h3 style="margin:0 0 6px">اصل محوری</h3>
+        <div class="quote">
+          «ناب باید به‌عنوان ارتقای تجربه معرفی شود، نه راه‌حل اجباری برای ناراحتی.» fileciteturn2file5
+        </div>
+
+        <h3 style="margin:18px 0 6px">دو لحن پیشنهادی</h3>
+        <ul>
+          <li><b>رسمی سازمانی</b>: برای مکاتبات حساس/رسمی. fileciteturn1file4</li>
+          <li><b>نیمه‌رسمی حرفه‌ای</b>: پیش‌فرض اکثر تعاملات کاندید ناب (حس «دیده شدن»). fileciteturn1file3</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="margin:0 0 6px">چارچوب تصمیم معرفی ناب (A/B/C)</h3>
+        <ul>
+          <li><b>گروه A — حذف تبلیغات</b>: معرفی ناب در همان پیام اول منطقی است. fileciteturn1file3</li>
+          <li><b>گروه B — کنترل تجربه/نوتیف</b>: اول آموزش/تنظیمات؛ سپس پیشنهاد نرم ناب. fileciteturn1file13</li>
+          <li><b>گروه C — آستانه حذف</b>: ابتدا بازگرداندن اعتماد؛ پیشنهاد ناب در پیام اول معمولاً ضدنتیجه است. fileciteturn1file13</li>
+        </ul>
+
+        <details style="margin-top:10px">
+          <summary>پیام‌های استاندارد آماده (۴ سناریو)</summary>
+          <div class="small" style="margin-top:8px">
+            در سند پیام‌های استاندارد، برای سناریوهای پرتکرار (حذف تبلیغات / اطلاع‌خواهی / موذن دلخواه / …) متن‌های قابل کپی وجود دارد. fileciteturn1file16
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card">
+    <div class="secTitle">
+      <h2>ارزش ایجادشده برای محصول و مارکتینگ (So what?)</h2>
+      <span class="tag">Impact</span>
+    </div>
+
+    <div class="grid" style="margin-top:12px">
+      <div>
+        <h3 style="margin:0 0 6px">برای محصول</h3>
+        <ul>
+          <li>دیتای تاریخی قابل جست‌وجو و قابل اتکا برای «پایش روند تقاضا».</li>
+          <li>امکان سنجش اثر تغییرات (تبلیغات/اذان/…): هم‌زمان‌سازی با ماه/هفته.</li>
+          <li>کاهش نوسان در تجربه کاربر با «استاندارد پیام» و چارچوب A/B/C.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="margin:0 0 6px">برای مارکتینگ</h3>
+        <ul>
+          <li>تفکیک «تقاضای واقعی» از «واکنش احساسی به تبلیغ/مزاحمت» (کمک به پیام‌پردازی).</li>
+          <li>مشخص شدن کانال‌های مولد درخواست (پیشخوان/سوشال/…): اولویت‌بندی کمپین.</li>
+          <li>استفاده از متن‌های استاندارد برای همسانی پیام در نقاط تماس.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:12px">
+      <b>جمع‌بندی دمو:</b>
+      ما «یک خروجی اکسل» تولید نکردیم؛ ما یک <span class="accent">چرخه عملیاتی پایدار</span> ساختیم که همزمان:
+      داده می‌دهد، روند می‌سازد، و تجربه ارتباط با کاربر را استاندارد می‌کند.
+    </div>
+  </section>
+
+  <div class="footer">
+    سند داخلی · برای دمو · فونت پیشنهادی: Vazirmatn / IranSans / Yekan
+  </div>
+</div>
+</body>
+</html>

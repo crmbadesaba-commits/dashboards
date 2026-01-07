@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> رسیدگی به خطاهای محتوایی کاربران حبل‌المتین</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    /* ====== Design Tokens ====== */
+    :root{
+      --bg:#0b1020;
+      --panel:#0f172a;
+      --ink:#e5e7eb;
+      --muted:#9aa4b2;
+      --edge:#243043;
+      --brand:#7c3aed;
+      --brand-2:#06b6d4;
+      --ok:#10b981;         /* سبز پس‌زمینه عناصر موفقیت */
+      --ok-text:#22c55e;    /* سبز مخصوص متن (متمایز از متن معمولی) */
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --shadow: 0 10px 30px rgba(2,8,23,.35);
+      --radius:20px;
+      --radius-sm:14px;
+      --font: 15px/1.9 IRANSans, Vazirmatn, Segoe UI, Roboto, system-ui, -apple-system, Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f6f7fb; --panel:#ffffff; --ink:#0f172a; --muted:#687385; --edge:#e6e8ee; --shadow:0 10px 24px rgba(2,8,23,.08); }
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:var(--font)}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1100px;margin:auto;padding:24px;display:grid;grid-template-columns:260px 1fr;gap:20px}
+    header.hero{
+      grid-column:1/-1;background:
+        radial-gradient(1200px 400px at 80% -10%, rgba(124,58,237,.20), transparent 60%),
+        radial-gradient(1200px 500px at -20% -40%, rgba(6,182,212,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+      border:1px solid var(--edge);border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+    .hero h1{margin:0 0 8px;font-size:24px;letter-spacing:.2px}
+    .hero p{margin:0;color:var(--muted)}
+    .hero .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .chip{padding:.25rem .6rem;border:1px solid var(--edge);border-radius:999px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.02)}
+    .badge{background:linear-gradient(90deg,var(--brand),var(--brand-2));color:white;border:none}
+    /* Sidebar (TOC) */
+    nav.toc{
+      position:sticky; top:16px; align-self:start;
+      border:1px solid var(--edge);border-radius:var(--radius);background:var(--panel);box-shadow:var(--shadow);
+      padding:16px;
+    }
+    nav .title{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .logo{width:38px;height:38px;border-radius:12px;background:conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-2), var(--brand));display:grid;place-items:center;color:#fff;font-weight:800}
+    .toc ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+    .toc a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;color:var(--muted);border:1px solid transparent}
+    .toc a:hover{color:var(--ink);border-color:var(--edge);background:rgba(124,58,237,.06)}
+    .toc .minor{font-size:12px;color:var(--muted)}
+    /* Cards / Sections */
+    section.card{border:1px solid var(--edge);border-radius:var(--radius);background:var(--panel);box-shadow:var(--shadow);padding:18px 20px}
+    section.card + section.card{margin-top:16px}
+    section.card h2{margin:0 0 10px;font-size:18px}
+    .lead{color:var(--muted);margin-top:-2px}
+    /* Key/Value grid */
+    .kv{display:grid;grid-template-columns:180px 1fr;gap:8px;margin-top:10px}
+    .kv .k{color:var(--muted)}
+    .kv .v{padding:8px 10px;border:1px dashed var(--edge);border-radius:12px;background:rgba(255,255,255,.02)}
+    /* Lists */
+    ul.clean, ol.clean{margin:8px 0 0 0;padding:0 20px}
+    /* Table */
+    table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--edge);border-radius:14px;overflow:hidden}
+    th,td{padding:10px 12px;border-bottom:1px solid var(--edge);text-align:right}
+    th{background:rgba(124,58,237,.08)}
+    tr:last-child td{border-bottom:none}
+    /* Progress Bars */
+    .bars{display:grid;gap:10px;margin-top:8px}
+    .bar{display:grid;gap:6px}
+    .bar label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+    .bar label .percent{color:var(--ok-text);font-weight:700} /* درصدها سبز متمایز */
+    .track{height:10px;border-radius:999px;background:rgba(124,58,237,.15);overflow:hidden;border:1px solid var(--edge)}
+    .fill{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    /* Timeline */
+    .timeline{display:grid;gap:14px;margin-top:8px}
+    .tl-item{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start}
+    .dot{width:10px;height:10px;border-radius:50%;margin-top:7px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    .tl-card{border:1px solid var(--edge);border-radius:12px;padding:10px 12px;background:rgba(255,255,255,.02)}
+    /* Callout */
+    .callout{
+      border:1px solid #134e4a;
+      background:linear-gradient(180deg, rgba(16,185,129,.15), rgba(16,185,129,.08));
+      color:var(--ok-text); /* متن سبز متمایز از متن عادی */
+      border-radius:14px;padding:12px 14px
+    }
+    /* Footer */
+    footer{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px;margin-top:16px;color:var(--muted)}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{appearance:none;border:1px solid var(--edge);background:var(--panel);color:var(--ink);border-radius:12px;padding:9px 12px;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));border:none;color:white}
+    @media (max-width: 980px){ .container{grid-template-columns:1fr} nav.toc{position:relative} }
+    @media print{ nav.toc,.actions{display:none !important} body{background:#fff} header.hero{box-shadow:none} section.card{break-inside:avoid} a[href]:after{content:""} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HERO -->
+    <header class="hero">
+      <h1> رسیدگی به خطاهای محتوایی کاربران «حبل‌المتین»</h1>
+      <p>واحد: صدای کاربر </p>
+      <div class="chips">
+        <span class="chip">بازه: از ابتدای ۱۴۰۱ تا کنون</span>
+        <span class="chip">نوع گزارش: <strong>کیفی + عملیاتی</strong></span>
+        <span class="chip badge">آماده ارائه به مدیرعامل</span>
+      </div>
+    </header>
+
+    <!-- SIDEBAR / TOC -->
+    <nav class="toc" aria-label="فهرست بخش‌ها">
+      <div class="title">
+        <div class="logo" aria-hidden="true">ح</div>
+        <div>
+          <strong>فهرست</strong><div class="minor">حرکت سریع بین بخش‌ها</div>
+        </div>
+      </div>
+      <ul>
+        <li><a href="#summary">خلاصه </a></li>
+        <li><a href="#background">پیشینه و مسأله</a></li>
+        <li><a href="#method">اقدامات و روش</a></li>
+        <li><a href="#scope">دامنه اقلام</a></li>
+        <li><a href="#sources">منابع و تطبیق</a></li>
+        <li><a href="#effort">زمان و نفر-ساعت</a></li>
+        <li><a href="#status">وضعیت و پیشرفت</a></li>
+        <li><a href="#deliverables">خروجی‌ها و پیوست‌ها</a></li>
+        <li><a href="#next">گام‌های بعدی</a></li>
+        <li><a href="#sign">تهیه کننده</a></li>
+      </ul>
+    </nav>
+
+    <!-- MAIN -->
+    <main>
+      <section id="summary" class="card">
+        <h2>خلاصه </h2>
+        <p class="lead">
+          از ابتدای ۱۴۰۱، همه خطاهای محتوایی گزارش‌شده توسط کاربران در شیت گوگل واحد «صدای کاربر» ثبت و نگهداری شده است. با توجه به عدم اثربخشی روال قبلی (بررسی بیرون‌سازمانی)، نرم‌افزار <strong>«تفسیر جامع نور»</strong> به‌عنوان مرجع صحت محتوا تهیه و استقرار یافت و کل موارد سه‌سال اخیر با آن تطبیق داده شد. فهرست نهایی برای اقدام اصلاحی تیم فنی آماده است.
+        </p>
+        <div class="kv">
+          <div class="k">واحد مسئول ثبت</div><div class="v">صدای کاربر (ثبت مستمر در شیت گوگل)</div>
+          <div class="k">منابع تطبیق</div><div class="v"> + تفسیر جامع نور (مرجع)</div>
+          <div class="k">وضعیت کنونی</div><div class="v">اقلام مغایر مشخص و «شکل صحیح» در شیت درج شده است</div>
+        </div>
+      </section>
+
+      <section id="background" class="card">
+        <h2>پیشینه و مسأله</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="dot"></div>
+            <div class="tl-card"><strong>۱۴۰۱</strong> — آغاز ثبت ساختاریافته خطاهای محتوایی توسط اعضای واحد صدای کاربر.</div>
+          </div>
+          <div class="tl-item">
+            <div class="dot"></div>
+            <div class="tl-card"><strong>۱۴۰۱–۱۴۰۳</strong> — رسیدگی توسط همکار بیرونی (خانم زاهدی) و پیگیری تیم محصول؛ نتیجه مطلوب حاصل نشد.</div>
+          </div>
+          <div class="tl-item">
+            <div class="dot"></div>
+            <div class="tl-card"><strong>اقدام اصلاحی</strong> — خرید و استقرار نرم‌افزار «تفسیر جامع نور» به‌عنوان مرجع صحت محتوا.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="method" class="card">
+        <h2>اقدامات انجام‌شده و روش کار</h2>
+        <ol class="clean">
+          <li>تهیه و نصب «تفسیر جامع نور» روی یکی از سیستم‌های واحد «صدای کاربر».</li>
+          <li>بازبینی همه اقلام ثبت‌شده طی چهار سال و تطبیق موردی با مرجع.</li>
+          <li>علامت‌گذاری اقلام مغایر و درج «شکل صحیح» در شیت مربوطه (نمونه آفلاین پیوست).</li>
+          <li>حذف اقلامی که پیشتر اصلاح شده بودند از فهرست جاری.</li>
+        </ol>
+      </section>
+
+      <section id="scope" class="card">
+        <h2>دامنه اقلام بررسی‌شده</h2>
+        <ul class="clean">
+          <li>ترجمه</li>
+          <li>توضیحات سوره</li>
+          <li>تفسیر متنی</li>
+          <li>متن عربی</li>
+          <li>استخاره</li>
+          <li>انتخاب قاری</li>
+          <li>لغت‌نامه</li>
+          <li>تفسیر گویا</li>
+          <li>پخش صوت</li>
+          <li>ترجمه گویا</li>
+          <li>راهنمای علامات</li>
+        </ul>
+      </section>
+
+      <section id="sources" class="card">
+        <h2>منابع و تطبیق</h2>
+        <p class="lead">اقلام با دو مرجع عملیاتی تطبیق داده شدند:</p>
+        <ul class="clean">
+          <li><strong>نرم‌افزار حبل‌المتین:</strong> وضعیت فعلی محتوا</li>
+          <li><strong>نرم‌افزار تفسیر جامع نور:</strong> مرجع صحت محتوا</li>
+        </ul>
+        <div class="callout">
+          خروجی تطبیق شامل وضعیت مغایرت + شکل صحیح برای هر مورد است و در شیت ثبت شده است.
+        </div>
+      </section>
+
+      <section id="effort" class="card">
+        <h2>زمان صرف‌شده و نفر-ساعت</h2>
+        <table>
+          <thead><tr><th>همکار</th><th>واحد</th><th>ساعت</th><th>دوره انجام</th><th>توضیح</th></tr></thead>
+          <tbody>
+            <tr><td>خانم پریسا شهباز</td><td>صدای کاربر</td><td>۳۰</td><td>۱۰ روز کاری</td><td>بازبینی و درج شکل صحیح اقلام</td></tr>
+            <tr><td>خانم مبینا زیدآبادی</td><td>صدای کاربر</td><td>۵۸</td><td>۲۰ روز کاری</td><td>بازبینی و درج شکل صحیح اقلام</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="status" class="card">
+        <h2>وضعیت و پیشرفت</h2>
+        <div class="bars">
+          <div class="bar">
+            <label><span>بازبینی موارد ثبت‌شده</span><span class="percent">۱۰۰٪</span></label>
+            <div class="track"><div class="fill" style="width:100%"></div></div>
+          </div>
+          <div class="bar">
+            <label><span>تعیین «شکل صحیح» برای موارد مغایر</span><span class="percent">۱۰۰٪</span></label>
+            <div class="track"><div class="fill" style="width:100%"></div></div>
+          </div>
+          <div class="bar">
+            <label><span>آماده‌سازی بسته تحویلی برای تیم فنی</span><span class="percent">۱۰۰٪</span></label>
+            <div class="track"><div class="fill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="deliverables" class="card">
+        <h2>خروجی‌ها و پیوست‌ها</h2>
+        <ul class="clean">
+          <li>نمونه آفلاین شیت: شامل ستون «شکل صحیح» برای موارد مغایر</li>
+        </ul>
+        <div class="callout">
+          بسته آماده ارائه به <strong>تیم فنی</strong> جهت اعمال اصلاحات در نسخه‌های بعدی نرم‌افزار «حبل‌المتین» است.
+        </div>
+      </section>
+
+      <section id="next" class="card">
+        <h2>پیشنهاد گام‌های بعدی</h2>
+        <ol class="clean">
+          <li>قرار دادن فهرست در دستور کار تیم فنی و زمان‌بندی انتشار اصلاحات.</li>
+        </ol>
+      </section>
+
+      <section id="sign" class="card">
+        <h2>تهیه کننده</h2>
+        <div class="kv">
+          <div class="k">تهیه‌کننده</div><div class="v">فرزاد مالکی </div>
+          <div class="k">تاریخ</div><div class="v"> 23/ 06 / 1404</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>©  واحد صدای کاربر</div>
+      <div class="actions">
+        <button class="btn" onclick="window.print()">چاپ</button>
+        <button class="btn primary" onclick="scrollTo(0,0)">بازگشت به بالا</button>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
